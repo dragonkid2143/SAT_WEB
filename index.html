@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Tool</title>
+    <style>
+        /* Basic styling for body and container */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            background-image: url('emotional eggs.jpg'); /* Add your image path here */
+            background-size: cover;
+            background-position: center;
+            opacity: 1; /* Reduce opacity of the image */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff !important;
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #121213;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analyser</h1>
+        <input type="text" id="userInput" placeholder="Write down your thoughts...">
+        <button id="submitButton">Submit</button>
+        <div class="result" id="resultContainer"></div>
+    </div>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', evaluateInput);
+
+        function evaluateInput() {
+            const input = document.getElementById('userInput').value.trim();
+            const resultContainer = document.getElementById('resultContainer');
+
+            // Clear previous results
+            resultContainer.innerHTML = '';
+
+            // Use switch-case for better performance
+            switch (input) {
+                case '1':
+                    renderResult('😊', 'Positive');
+                    break;
+                case '0':
+                    renderResult('😢', 'Negative');
+                    break;
+                default:
+                    renderResult('', 'Please enter a valid sentence.');
+            }
+        }
+
+        function renderResult(emoji, message) {
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = emoji
+                ? `<div class='emoji'>${emoji}</div><div>${message}</div>`
+                : `<div>${message}</div>`;
+        }
+    </script>
+</body>
+</html>
