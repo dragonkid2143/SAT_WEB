@@ -95,11 +95,11 @@
             }
 
             input[type="text"] {
-                width: 100%;
+                width: 90%;
             }
 
-            button {
-                width: 100%;
+            .container {
+                width: 80%;
             }
         }
     </style>
@@ -113,10 +113,19 @@
     </div>
 
     <script>
-        document.getElementById('submitButton').addEventListener('click', evaluateInput);
+        const userInput = document.getElementById('userInput');
+        const submitButton = document.getElementById('submitButton');
+
+        // Add event listeners
+        submitButton.addEventListener('click', evaluateInput);
+        userInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                evaluateInput();
+            }
+        });
 
         function evaluateInput() {
-            const input = document.getElementById('userInput').value.trim();
+            const input = userInput.value.trim();
             const resultContainer = document.getElementById('resultContainer');
 
             // Clear previous results
@@ -125,7 +134,7 @@
             // Use switch-case for better performance
             switch (input) {
                 case '1':
-                    renderResult('😊', 'Positive');
+                    renderResult('🙂', 'Positive');
                     break;
                 case '0':
                     renderResult('😢', 'Negative');
